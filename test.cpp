@@ -10,7 +10,7 @@ using MyAllocator = mem::allocator<T>; // replace the std::allocator with your a
 using Point2D = std::pair<int, int>;
 
 const int TestSize = 10000;
-const int PickSize = 10000;
+const int PickSize = 1000;
 
 int main()
 {

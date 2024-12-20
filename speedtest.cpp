@@ -1,5 +1,5 @@
 #include <cassert>	
-#include <ctime>	
+#include <ctime>	//记录运行时间
 #include <iostream> 
 #include <vector>	
 #include <list>
@@ -9,7 +9,7 @@
 
 
 #define ELEMS 10000     // 插入元素个数
-#define REPS 1000       // 重复次数
+#define TIMES 1000       // 重复次数
 
 int main()
 {
@@ -18,9 +18,9 @@ int main()
 	// STL 默认allocator
 	std::list<int, std::allocator<int> > stackDefault;
 	start = clock();
-	for (int j = 0; j < REPS; j++)
+	for (int j = 0; j < TIMES; j++)
 	{
-		assert(stackDefault.empty());
+		assert(stackDefault.empty());   // 置空
 		for (int i = 0; i < ELEMS; i++)
 		{
 			stackDefault.push_back(i);
@@ -37,9 +37,9 @@ int main()
 	// memory_pool allocator
 	std::list<int, mem::allocator<int> > stackPool;
 	start = clock();
-	for (int j = 0; j < REPS; j++)
+	for (int j = 0; j < TIMES; j++)
 	{
-		assert(stackPool.empty());
+		assert(stackPool.empty());  // 置空
 		for (int i = 0; i < ELEMS; i++)
 		{
 			stackPool.push_back(i);
@@ -53,7 +53,7 @@ int main()
 	std::cout << "MemoryPool Allocator Time: ";
 	std::cout << (((double)clock() - start) / CLOCKS_PER_SEC) << "\n\n";
 
-	MemoryPool::clear();
+	MemoryPool::clear();    // 清空内存池
 
 	return 0;
 }
